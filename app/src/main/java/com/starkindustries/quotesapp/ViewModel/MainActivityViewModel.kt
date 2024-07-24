@@ -9,10 +9,13 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.starkindustries.quotesapp.Data.Quote
 import com.starkindustries.quotesapp.Singleton.VolleySingleton
 import org.json.JSONObject
+interface QuotesCallback {
+    fun onQuotesReceived():ArrayList<Quote>
+}
 class MainActivityViewModel(val context:Context):ViewModel() {
     val URL:String="https://type.fit/api/quotes"
     lateinit var quotesList:ArrayList<Quote>
-    fun getList():ArrayList<Quote>
+    fun getList(context: Context):ArrayList<Quote>
     {
         quotesList= ArrayList<Quote>()
         var request = JsonArrayRequest(URL,Response.Listener{
